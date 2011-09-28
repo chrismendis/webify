@@ -14,7 +14,7 @@ module Webify
         port = options[:port] || Webify::DEFAULT_PORT
         throttle = options[:throttle] || 0
         
-        server = ::Mongrel::HttpServer.new("0.0.0.0", port, 950, throttle, 60)
+        server = ::Mongrel::HttpServer.new("0.0.0.0", port, 950, throttle.to_i, 60)
         server.register("/", ::Mongrel::DirHandler.new(dir))
         
         trap('INT') { server.stop }
