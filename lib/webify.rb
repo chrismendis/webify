@@ -1,8 +1,6 @@
 require 'webrick'
 require 'optparse'
 
-require 'ruby-debug'
-
 class Webify
   include WEBrick
   
