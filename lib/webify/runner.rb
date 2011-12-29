@@ -12,12 +12,13 @@ module Webify
       }
 
       options_parser = OptionParser.new do |opts|
-        opts.banner = "Webify -- serve any directory to your browser\n"+
+        opts.banner = "Webify v#{Webify::VERSION} -- serve any directory to your browser\n"+
                       "Usage: webify [options]"
 
         opts.separator ""
         opts.separator "Server options:"
 
+        opts.on('-t', '--thin', "Use Thin as the backend (default: #{options[:backend]})") { options[:backend] = 'Thin' }
         opts.on('-m', '--mongrel', "Use Mongrel as the backend (default: #{options[:backend]})") { options[:backend] = 'Mongrel' }
         opts.on('-d', '--dir DIRECTORY', "Document root DIRECTORY (default: #{options[:dir]})") {|val| options[:dir] = val }
         opts.on('-p', '--port PORT', "Use PORT (default: #{options[:port]})") {|val| options[:port] = val }
@@ -25,7 +26,7 @@ module Webify
         
         opts.separator ""
         opts.separator "Mongrel backend options:"
-        opts.on('-t', '--throttle TIME', "Time to pause (in hundredths of a second) between accepting clients. (default: #{options[:throttle]})") {|val| options[:throttle] = val }
+        opts.on('-r', '--throttle TIME', "Time to pause (in hundredths of a second) between accepting clients. (default: #{options[:throttle]})") {|val| options[:throttle] = val }
       end
       options_parser.parse!(ARGV)
       
