@@ -1,4 +1,5 @@
 require 'optparse'
+require 'socket'
 
 module Webify
   class Runner
