@@ -15,7 +15,7 @@ module Webify
         
         server = ::Thin::Server.new('0.0.0.0', port) do
           use Rack::CommonLogger
-          run Rack::Static.new(nil, { :urls => ['/'], :root => dir })
+          run Rack::Directory.new(dir)
         end
         
         trap('INT') { server.stop! }
